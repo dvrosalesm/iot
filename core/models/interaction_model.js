@@ -6,6 +6,7 @@ connectionCheck();
 
 let interactionSchema = new mongoose.Schema({
     date: { type : Date, default: common.getCurrentDate() },
+    interactionType: String,
     request: {
         headers: {
             "host": String,

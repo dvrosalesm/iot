@@ -5,7 +5,9 @@ module.exports = {
 
     logInteraction: function(req, res, body) {
         let exceptionIsPresent = body.message ? body.message : "";
+        var fullUrl = req.originalUrl;
         let interactionObj = {
+            interactionType: fullUrl,
             request: {
                 headers: req.headers,
                 body: {
