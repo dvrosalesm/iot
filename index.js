@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 
+const port = process.env.PORT || 3000
+
 var changeController = require('./controllers/change')
 var createController = require('./controllers/create')
 var deleteController = require('./controllers/delete')
@@ -23,4 +25,4 @@ app.use('/search', searchController)
 app.use('/change', updateController)
 app.use('/', virtualDeviceController)
 
-app.listen(1234, () => { console.log('started listening') })
+app.listen(port, () => { console.log('started listening') })
