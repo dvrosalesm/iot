@@ -26,5 +26,9 @@ module.exports = {
     },
     formatDate: (date) => {
         return moment(date).utc().format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z";
-    } 
+    },
+    errorResponse: (res, msg) => {
+        res.body.status = "ERROR";
+        res.body.message = msg;
+    }
 }

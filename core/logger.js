@@ -4,6 +4,7 @@ var hardwareModel = require('./models/hardware_model')
 module.exports = {
 
     logInteraction: function(req, res, body) {
+        let exceptionIsPresent = body.message ? body.message : "";
         let interactionObj = {
             request: {
                 headers: req.headers,
@@ -14,7 +15,8 @@ module.exports = {
             response: {
                 headers: res.getHeaders(),
                 body: {
-                    data: JSON.stringify(body)
+                    data: JSON.stringify(body),
+                    exception: exceptionIsPresent
                 }
             }
         }
@@ -52,7 +54,7 @@ module.exports = {
                     id: "id05",
                     tag: "Estado del sistema",
                     type: "output",
-                    status: infoObj.LED_RGB.toString()
+                    status: infoObj.LED_RGBIO.toString()
                 },
                 {
                     id: "id06",

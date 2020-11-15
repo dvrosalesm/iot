@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.use('/change', changeController)
+app.use('/change', changeController) 
 app.use('/create', createController)
 app.use('/delete', deleteController)
-app.use('/info', infoController)
-app.use('/search', searchController)
-app.use('/change', updateController)
+app.use('/info', infoController) // listo
+app.use('/search', searchController) // listo
+app.use('/update', updateController)
 app.use('/', virtualDeviceController)
 
 app.listen(port, () => { console.log('started listening') })

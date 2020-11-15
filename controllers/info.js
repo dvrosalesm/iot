@@ -4,9 +4,7 @@ var IOMiddleware = require('../core/io_middleware');
 var hardwareModel = require('../core/models/hardware_model');
 var router = express.Router();
 
-router.get('/', IOMiddleware, (req, res) => {
-    logger.logInteraction(req, res, res.body);
-
+router.post('/', IOMiddleware, (req, res) => {
     hardwareModel.findOne().sort({ date: -1 }).limit(1).exec((err, data) => {
         if(!err) {
             if(data.devices) {
@@ -19,6 +17,7 @@ router.get('/', IOMiddleware, (req, res) => {
                 });
                 res.body.hardware = devicesResult;
             }
+            logger.logInteraction(req, res, res.body);
             res.json(res.body);   
         } 
     });

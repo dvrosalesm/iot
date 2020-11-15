@@ -1,5 +1,5 @@
-var LocalStorage = require('node-localstorage');
-localStorage = new LocalStorage('./_data/transient_requests');
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./core/_data');
 
 const storage = {
     setItem: (key, obj) => localStorage.setItem(key, obj),
@@ -7,6 +7,6 @@ const storage = {
     removeItem: (key) => localStorage.removeItem(key)
 }
 
-module.exports.get = storage.setItem;
-module.exports.set = storage.getItem;
+module.exports.get = storage.getItem;
+module.exports.set = storage.setItem;
 module.exports.remove = storage.removeItem;
