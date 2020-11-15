@@ -10,11 +10,11 @@ var moment = require('moment');
 router.post('/', IOMiddleware, (req, res) => {
 
 
-    if( !(req.body.search && req.body.search.start_date && req.body.search.finish_date && req.body.search.id) ) {
+    if( !(req.body.search && req.body.search.start_date && req.body.search.finish_date && req.body.search.id_hardware) ) {
         common.errorResponse(res, "Inputs faltantes");
         logger.logInteraction(req, res, res.body);
         res.json(res.body);
-    } else if(vd.getTypeById(req.body.search.id) === "na") {
+    } else if(vd.getTypeById(req.body.search.id_hardware) === "na") {
         common.errorResponse(res, "Id de sensor no reconocido");
         logger.logInteraction(req, res, res.body);
         res.json(res.body);
@@ -32,16 +32,16 @@ router.post('/', IOMiddleware, (req, res) => {
                     data.map(i => {
                         if(i.devices) {
                             i.devices.map(j => {
-                                if(j.id === req.body.search.id) {
+                                if(j.id === req.body.search.id_hardware) {
                                     devicesResult[common.formatDate(i.date)] = vd.deviceToNL(j.id, j);
                                 }
                             });
                         }
                     })
 
-                    let type = vd.getTypeById(req.body.search.id);
+                    let type = vd.getTypeById(req.body.search.id_hardware);
                     res.body.search = {
-                        "id_hardware": req.body.search.id,
+                        "id_hardware": req.body.search.id_hardware,
                         "type": type
                     }
 
