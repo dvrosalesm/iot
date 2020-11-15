@@ -54,7 +54,7 @@ module.exports = {
                     id: "id05",
                     tag: "Estado del sistema",
                     type: "output",
-                    status: infoObj.LED_RGBIO.toString()
+                    status: infoObj.LED_RGB.toString()
                 },
                 {
                     id: "id06",

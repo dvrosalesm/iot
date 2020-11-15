@@ -154,9 +154,9 @@ module.exports = {
         }
 
         if(id === "id05") {
-            let text = obj.status === "255,233,0" ? "Precaucion" :
-                       obj.status === "255,0,0" ? "Alerta" :
-                       obj.status === "0,255,0" ? "Correcto" : "Correcto";
+            let text = obj.status === "255,233,0" ? "precaucion" :
+                       obj.status === "255,0,0" ? "alerta" :
+                       obj.status === "0,255,0" ? "correcto" : "correcto";
             return {
                 sensor: obj.status,
                 status: obj.status == 0 ? false : true,
@@ -168,7 +168,7 @@ module.exports = {
             return {
                 sensor: obj.status,
                 status: obj.status == 0 ? false : true,
-                text: obj.status == 0 ? "Encendido" : "Apagado"
+                text: obj.status == 0 ? "encendido" : "apagado"
             }
         }
         
@@ -206,5 +206,42 @@ module.exports = {
         if(id === "id01" || id === "id02" || id === "id03") return "input";
         if(id === "id04" || id === "id05" || id === "id06" || id === "id07") return "output";
         return "na";
+    },
+
+    getValueNumberById: function(id) {
+        if(id === "id01") return this.SLIDER0;
+        if(id === "id02") return this.SLIDER1;
+        if(id === "id03") return this.SWITCH0;
+        if(id === "id04") return this.SWITCH1;
+        if(id === "id05") return this.LED_RGB;
+        if(id === "id06") return this.LED_RED;
+        if(id === "id07") return this.HEAT;
+        return null;
+    },
+
+    getValueTextById: function(id) {
+        if(id === "id01") {
+            return this.SLIDER0 > 180 ? "templado" : 
+                        this.SLIDER0 > 90 ? "frio" :
+                       "helado";
+        }
+
+        if(id === "id02") {
+            return this.SLIDER1 > 180 ? "templado" : 
+                        this.SLIDER1 > 90 ? "frio" :
+                       "helado";
+        }
+
+        if(id === "id03") return this.SWITCH0 == 0 ? "apagado" : "encendido";
+        if(id === "id04") return this.SWITCH1 == 0 ? "apagado" : "encendido";
+
+        if(id === "id05") {
+            return this.LED_RGB.toString() === "255,233,0" ? "precaucion" :
+                    this.LED_RGB.toString() === "255,0,0" ? "alerta" :
+                    this.LED_RGB.toString() === "0,255,0" ? "correcto" : "correcto";
+        }
+
+        if(id === "id06") return this.LED_RED == 0 ? "encendido" : "apagado";
+        if(id === "id07") return this.HEAT == 0 ? "encendido" : "apagado";
     }
 }

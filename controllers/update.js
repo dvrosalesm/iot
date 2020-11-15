@@ -17,7 +17,7 @@ router.post('/', IOMiddleware, (req, res) => {
             if(data !== null) {
                 
                 if(req.body.update.if) {
-                    data.external = req.body.update.if.left.url !== "iot-9b4eg.ondigitalocean.app"; 
+                    data.external = req.body.update.if.left.url.includes("iot-9b4eg.ondigitalocean.app"); 
                     data.if = req.body.update.if;
                 }
 

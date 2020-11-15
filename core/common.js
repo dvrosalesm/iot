@@ -24,11 +24,31 @@ module.exports = {
     getCurrentDate: () => {
         return moment(Date.now()).utc().format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z";
     },
+    getCurrentDateSubMin: (minutes) => {
+        let MINUTE_DURATION = 60000;
+        return moment(Date.now() - (MINUTE_DURATION * minutes)).utc().format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z";
+    },
     formatDate: (date) => {
         return moment(date).utc().format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z";
     },
     errorResponse: (res, msg) => {
         res.body.status = "ERROR";
         res.body.message = msg;
+    },
+    doOperation: (left, right, condition) => {
+        if(condition === "=") {
+            return left == right;
+        } else if(condition === "!=") {
+            return left != right;
+        } else if(condition === ">") {
+            return left > right;
+        } else if(condition === "<") {
+            return left < right;
+        } else if(condition === ">=") {
+            return left >= right;
+        } else if(condition === "<=") {
+            return left <= right;
+        } 
+        return false;
     }
 }

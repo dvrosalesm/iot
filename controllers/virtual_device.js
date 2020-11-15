@@ -4,6 +4,7 @@ const logger = require('../core/logger')
 var vd = require('../core/vdmapper')
 var router = express.Router()
 var storage = require('../core/storage')
+var eventManager = require('../core/event_manager')
 
 router.post('/', bodyParser.text(), (req, res) => {
     
@@ -27,6 +28,7 @@ router.post('/', bodyParser.text(), (req, res) => {
         storage.set("vd", nextStatus)
     }
     logger.logInfo(vd)
+    eventManager.checkForEvents();
     res.set({'Content-Type': 'text/plain'})
     res.send(nextStatus)
 })
