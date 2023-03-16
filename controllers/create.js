@@ -12,7 +12,7 @@ router.post('/', IOMiddleware, (req, res) => {
         logger.logInteraction(req, res, res.body);
         res.json(res.body);
     } else {
-        req.body.create.external = req.body.create.if.left.url.includes("iot-9b4eg.ondigitalocean.app"); 
+        req.body.create.external = req.body.create.if.left.url.includes(process.env.service_url); 
         req.body.create.idEvent = uuid();
         eventModel.create(req.body.create);
         res.body.idEvent = req.body.create.idEvent;
