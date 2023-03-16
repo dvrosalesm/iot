@@ -5,7 +5,7 @@ var storage = require('../core/storage')
 var common = require('../core/common');
 var axios = require('axios').default;
 
-const localURL = "https://iot-9b4eg.ondigitalocean.app";
+const localURL = process.env.service_url;
 
 class IOEvent {
 
@@ -57,7 +57,7 @@ class IOEvent {
         let url = this.event.if.left.url;
         let data = {
             id: "CongeladorIoT_DR17002913",
-            url: "https://iot-9b4eg.ondigitalocean.app",
+            url: process.env.service_url,
             date: common.getCurrentDate(),
             search: {
                 "id_hardware": this.event.if.left.id,
@@ -122,7 +122,7 @@ class IOEvent {
         } else {
             let changeData = {
                 id: "CongeladorIoT_DR17002913",
-                url: "https://iot-9b4eg.ondigitalocean.app",
+                url: process.env.service_url,
                 date: common.getCurrentDate(),
                 change: {},
                 perro: "gato"
