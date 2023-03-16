@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-let db = "cc8iot";
-let password = "fjjzhcpeoLasp5nq";
+let db = process.env.db;
+let password = process.env.password;
 
 module.exports = function() {
     if(mongoose.connection.readyState === 0) {
